@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Love Letter For You</title>
+  <style>
+    :root {
+      --bg-color: #ffe6ea;
+      --card-bg: #ffffff;
+      --primary-color: #ff85a1;
+      --primary-hover: #ff6b8b;
+      --text-color: #4a4a4a;
+      --accent-color: #ffb3c1;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: var(--bg-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    /* Hide container initially until password is correct */
+    .container {
+      display: none;
+      background: var(--card-bg);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(255, 133, 161, 0.2);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      font-size: 2em;
+    }
+
+    .letter-body {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      white-space: pre-line;
+    }
+
+    .buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1em;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+    }
+
+    /* Animation display area */
+    #media-display {
+      position: relative;
+      min-height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      overflow: hidden;
+      background-color: #fff0f3;
+    }
+
+    /* Floating Heart Animation */
+    .heart-animation {
+      font-size: 4rem;
+      animation: popAndFade 1.2s ease-in-out forwards;
+    }
+
+    @keyframes popAndFade {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(1); opacity: 0; }
+    }
+
+    /* Image Fade-In */
+    .revealed-image {
+      max-width: 100%;
+      max-height: 350px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      animation: fadeIn 0.8s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .placeholder-text {
+      color: #b5838d;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="main-content">
+    <h1>Lgalby w 3inaya na 💕</h1>
+    
+    <div class="letter-body">
+      Kol nhar m3ek hdeyya mn raby . n7eb 7ennitek w dfa ltjibih lgalby, w 7bit n3lk el 7wija s8runa he4i 
+      
+      o9rsi 3l buttons bch tchufi 7wijet 9dam chwy ama 3ndhm m3na kbir!!!
+    </div>
+
+    <div class="buttons-grid">
+      <button class="btn" onclick="triggerMemory(1)">4ekra loula 🌸</button>
+      <button class="btn" onclick="triggerMemory(2)">4ekra thenya ✨</button>
+      <button class="btn" onclick="triggerMemory(3)">4ekra theltha 💖</button>
+      <button class="btn" onclick="triggerMemory(4)">4ekra rab3a 🌹</button>
+    </div>
+
+    <div id="media-display">
+      <p class="placeholder-text">O9rsi 3 button lfog chtlgui moufej2a!</p>
+    </div>
+  </div>
+
+  <script>
+    const SECRET_PASSCODE = "Yahya+Ala";
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const userPass = prompt("7oti pass chtchufi el letter 💕:");
+      
+      if (userPass === SECRET_PASSCODE) {
+        document.getElementById("main-content").style.display = "block";
+      } else {
+        alert("Incorrect passcode!");
+        document.body.innerHTML = "<h2 style='text-align:center; margin-top:50px; font-family:sans-serif; color: #ff85a1;'>Access Denied 🔒</h2>";
+      }
+    });
+
+    // Make sure your images in VS Code match these filenames inside your "images" folder
+    const images = {
+      1: "images/pic1.jpg",
+      2: "images/pic2.jpg",
+      3: "images/pic3.jpg",
+      4: "images/pic4.jpg"
+    };
+
+    const emojis = ["💖", "✨", "🌸", "🌹"];
+
+    function triggerMemory(id) {
+      const display = document.getElementById("media-display");
+      const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+      
+      display.innerHTML = `<div class="heart-animation">${randomEmoji}</div>`;
+
+      setTimeout(() => {
+        display.innerHTML = `<img src="${images[id]}" class="revealed-image" alt="Love Memory">`;
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>
